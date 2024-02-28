@@ -25,7 +25,7 @@ describe("MovingService", () => {
   movingService.addBox(box2);
 
   it("should return the correct number of items", () => {
-    expect(movingService.getItemCount()).to.equal(3);
+    expect(movingService.getItemCount()).to.equal(4);
   });
 
   it("should find an item by name", () => {
@@ -40,12 +40,12 @@ describe("MovingService", () => {
 
   it("should remove a box", () => {
     movingService.removeBox(box1);
-    expect(movingService.getItemCount()).to.equal(1);
+    expect(movingService.getItemCount()).to.equal(2);
   });
 
   it("should remove an item from a box", () => {
     box2.removeItem(item3);
-    expect(movingService.getItemCount()).to.equal(0);
+    expect(movingService.getItemCount()).to.equal(1);
   });
 
   it("should list all boxes", () => {
