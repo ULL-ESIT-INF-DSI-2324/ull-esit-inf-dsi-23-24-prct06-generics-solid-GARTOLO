@@ -97,6 +97,25 @@
           <h3>
             <a href="#md:ejercicio-1---la-mudanza">Ejercicio 1 - La mudanza</a>
           </h3>
+          <p>
+            Para la resolución de la mudanza, hemos creado en primer lugar una
+            interfaz <code>Item</code> que almacena los campos
+            <code>name</code> y <code>weight</code> (opcional) pudiendo añadir
+            más atributos en el futuro. A continuación, hemos creado una clase
+            <code>Box</code> que almacena un array de <code>Item</code>.
+            Contamos con las operaciones básicas para añadir, eliminar, listar y
+            buscar elementos en la caja. En esta clase también podríamos
+            mantener un peso máximo y comprobar que no se sobrepase, pero no lo
+            hemos implementado en este caso. Por último, hemos creado una clase
+            <code>MovingService</code> que contiene un array de
+            <code>Box</code> y las operaciones básicas para añadir, eliminar,
+            listar y buscar items en todas las cajas.
+          </p>
+          <p>
+            De esta manera gestionamos mediante clases genéricas la mudanza,
+            pudiendo añadir más funcionalidades en el futuro sin tener que
+            modificar el código de las clases existentes.
+          </p>
           <a
             id="md:ejercicio-2---facturas-en-diferentes-formatos"
             class="tsd-anchor"
@@ -145,6 +164,20 @@
               >Ejercicio 3 - Gestor de ficheros</a
             >
           </h3>
+          <p>
+            Este código viola el Principio de Responsabilidad Única (SRP) de
+            SOLID. La clase <code>FileManager</code> tiene dos
+            responsabilidades, la de leer y escribir archivos. Para solucionar
+            esto, se puede dividir la clase en dos, una para leer y otra para
+            escribir, de la siguiente manera:
+          </p>
+          <pre><code class="language-typescript"><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">FileReader</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-3">filePath</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">) {}</span><br/><br/><span class="hl-1">  </span><span class="hl-0">public</span><span class="hl-1"> </span><span class="hl-4">readFile</span><span class="hl-1">(): </span><span class="hl-2">string</span><span class="hl-1"> {</span><br/><span class="hl-1">    ...</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">FileWriter</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-3">filePath</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">) {}</span><br/><br/><span class="hl-1">  </span><span class="hl-0">public</span><span class="hl-1"> </span><span class="hl-4">writeFile</span><span class="hl-1">(</span><span class="hl-3">content</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    ...</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+          <p>
+            De esta manera, cada clase tiene una única responsabilidad, y si en
+            el futuro se añade una nueva funcionalidad, no será necesario
+            modificar el código de las clases existentes.
+          </p>
           <a
             id="md:ejercicio-4---impresoras-y-escáneres"
             class="tsd-anchor"
@@ -154,6 +187,46 @@
               >Ejercicio 4 - Impresoras y escáneres</a
             >
           </h3>
+          <p>
+            Este código viola el Principio de Segregación de Interfaces (ISP) de
+            SOLID. Esto es principalmente a que la interfaz PrintableScannable
+            tiene dos responsabilidades, y la clase Printer solo necesita la
+            funcionalidad de imprimir, no la de escanear, la cuál se utiliza en
+            la clase Scanner, pero ambas deben de implementar la interfaz
+            PrintableScannable. Para solucionar esto, se puede dividir la
+            interfaz en dos, una para imprimir y otra para escanear, de la
+            siguiente manera:
+          </p>
+          <pre><code class="language-typescript"><span class="hl-0">interface</span><span class="hl-1"> </span><span class="hl-2">Printable</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">print</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">interface</span><span class="hl-1"> </span><span class="hl-2">Scannable</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">scan</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">Printer</span><span class="hl-1"> </span><span class="hl-0">implements</span><span class="hl-1"> </span><span class="hl-2">Printable</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">print</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">&#39;Printing...&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">Scanner</span><span class="hl-1"> </span><span class="hl-0">implements</span><span class="hl-1"> </span><span class="hl-2">Scannable</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">scan</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">&#39;Scanning...&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">PrinterScanner</span><span class="hl-1"> </span><span class="hl-0">implements</span><span class="hl-1"> </span><span class="hl-2">Printable</span><span class="hl-1">, </span><span class="hl-2">Scannable</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">print</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">&#39;Printing...&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  }</span><br/><br/><span class="hl-1">  </span><span class="hl-4">scan</span><span class="hl-1">(): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">&#39;Scanning...&#39;</span><span class="hl-1">)</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+          <a
+            id="md:ejercicio-5---servicio-de-mensajería"
+            class="tsd-anchor"
+          ></a>
+          <h3>
+            <a href="#md:ejercicio-5---servicio-de-mensajería"
+              >Ejercicio 5 - Servicio de mensajería</a
+            >
+          </h3>
+          <p>
+            El código proporcionado en el ejercicio no cumple el principio de
+            inversión de dependencias (DIP) de SOLID. Este principio establece
+            que los módulos de alto nivel no deben depender de los módulos de
+            bajo nivel. Ambos deben depender de abstracciones. En este caso, la
+            clase <code>Notifier</code> depende directamente de las clases
+            concretas <code>EmailService</code> y
+            <code>ShortMessageService</code>, en lugar de depender de una
+            abstracción. Para esto añadimos una interfaz
+            <code>NotificationService</code>, para que ambas clases la
+            implementen, y la clase <code>Notifier</code> dependa de esta
+            interfaz. De esta manera, si en el futuro se añade un nuevo servicio
+            de notificación, solo se necesitará implementar la interfaz
+            <code>NotificationService</code> y añadirlo a la clase
+            <code>Notifier</code>, sin necesidad de modificar el código de la
+            clase <code>Notifier</code>.
+          </p>
+          <pre><code class="language-typescript"><span class="hl-0">interface</span><span class="hl-1"> </span><span class="hl-2">NotificationService</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">notify</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">): </span><span class="hl-2">void</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">EmailService</span><span class="hl-1"> </span><span class="hl-0">implements</span><span class="hl-1"> </span><span class="hl-2">NotificationService</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">notify</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">`Sending notification by email: </span><span class="hl-0">${</span><span class="hl-3">message</span><span class="hl-0">}</span><span class="hl-5">`</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">ShortMessageService</span><span class="hl-1"> </span><span class="hl-0">implements</span><span class="hl-1"> </span><span class="hl-2">NotificationService</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">notify</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-3">console</span><span class="hl-1">.</span><span class="hl-4">log</span><span class="hl-1">(</span><span class="hl-5">`Sending notification by SMS: </span><span class="hl-0">${</span><span class="hl-3">message</span><span class="hl-0">}</span><span class="hl-5">`</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">Notifier</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-3">notificationService</span><span class="hl-1">: </span><span class="hl-2">NotificationService</span><span class="hl-1">) {</span><br/><span class="hl-1">  }</span><br/><br/><span class="hl-1">  </span><span class="hl-4">sendNotification</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">: </span><span class="hl-2">string</span><span class="hl-1">): </span><span class="hl-2">void</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-0">this</span><span class="hl-1">.</span><span class="hl-3">notificationService</span><span class="hl-1">.</span><span class="hl-4">notify</span><span class="hl-1">(</span><span class="hl-3">message</span><span class="hl-1">);</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-6">// Client code</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-7">emailNotifier</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-4">Notifier</span><span class="hl-1">(</span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-4">EmailService</span><span class="hl-1">());</span><br/><span class="hl-3">emailNotifier</span><span class="hl-1">.</span><span class="hl-4">sendNotification</span><span class="hl-1">(</span><span class="hl-5">&#39;Hello World!&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-7">shortMessageNotifier</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-4">Notifier</span><span class="hl-1">(</span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-4">ShortMessageService</span><span class="hl-1">());</span><br/><span class="hl-3">shortMessageNotifier</span><span class="hl-1">.</span><span class="hl-4">sendNotification</span><span class="hl-1">(</span><span class="hl-5">&#39;Hello World!&#39;</span><span class="hl-1">);</span>
+</code><button>Copy</button></pre>
           <a id="md:modificación" class="tsd-anchor"></a>
           <h2><a href="#md:modificación">Modificación</a></h2>
           <a id="md:conclusiones" class="tsd-anchor"></a>
@@ -393,6 +466,14 @@
                                 ></a
                               >
                             </li>
+                            <li>
+                              <a href="#md:ejercicio-5---servicio-de-mensajería"
+                                ><span
+                                  >Ejercicio 5 -<wbr /> <wbr />Servicio de
+                                  mensajería</span
+                                ></a
+                              >
+                            </li>
                           </ul>
                         </li>
                         <li>
@@ -430,6 +511,38 @@
               id="tsd-nav-container"
               data-base="."
             >
+              <details class="tsd-index-accordion" data-key="ejercicio-1">
+                <summary class="tsd-accordion-summary">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <use href="#icon-chevronDown"></use></svg
+                  ><span>ejercicio-1</span>
+                </summary>
+                <div class="tsd-accordion-details">
+                  <ul class="tsd-nested-navigation">
+                    <li>
+                      <a href="modules/ejercicio_1_Box.html"
+                        ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                          <use href="#icon-2"></use></svg
+                        >Box</a
+                      >
+                    </li>
+                    <li>
+                      <a href="modules/ejercicio_1_Item.html"
+                        ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                          <use href="#icon-2"></use></svg
+                        >Item</a
+                      >
+                    </li>
+                    <li>
+                      <a href="modules/ejercicio_1_MovingService.html"
+                        ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                          <use href="#icon-2"></use></svg
+                        >MovingService</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </details>
               <details class="tsd-index-accordion" data-key="ejercicio-2">
                 <summary class="tsd-accordion-summary">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -476,6 +589,27 @@
                   </ul>
                 </div>
               </details>
+              <li>
+                <a href="modules/ejercicio_3_ejercicio_3.html"
+                  ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                    <use href="#icon-2"></use></svg
+                  >ejercicio-3/ejercicio-3</a
+                >
+              </li>
+              <li>
+                <a href="modules/ejercicio_4_ejercicio_4.html"
+                  ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                    <use href="#icon-2"></use></svg
+                  >ejercicio-4/ejercicio-4</a
+                >
+              </li>
+              <li>
+                <a href="modules/ejercicio_5_ejercicio_5.html"
+                  ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                    <use href="#icon-2"></use></svg
+                  >ejercicio-5/ejercicio-5</a
+                >
+              </li>
               <li>
                 <a href="modules/index.html"
                   ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
