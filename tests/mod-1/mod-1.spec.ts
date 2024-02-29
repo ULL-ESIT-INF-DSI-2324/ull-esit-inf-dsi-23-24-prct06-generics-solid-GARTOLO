@@ -68,4 +68,8 @@ describe("Modificacion 1", () => {
   it("Collection.getNumberOfArithmeticables() should return 2", () => {
     expect(collection.getNumberOfArithmeticables()).to.deep.equal(2);
   });
+
+  it("Collection.addArithmeticable(new Complex(1,2)) should return 3", () => {
+    expect(collection.addArithmeticable(new Complex(1, 2))).to.be.undefined;
+  });
 });

@@ -1,8 +1,10 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/G0JN8jPZ)
 
-# Práctica 4 - Arrays, tuplas y enumerados
+# Práctica 6 - Clases e interfaces genéricas. Principios SOLID
 
 Guillermo Emmanuel González Méndez - alu0101466941
+[![Tests](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-GARTOLO/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-GARTOLO/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-GARTOLO/badge.svg?branch=main)](https://coveralls.io/github/ULL-ESIT-INF-DSI-2324/ull-esit-inf-dsi-23-24-prct06-generics-solid-GARTOLO?branch=main)
 
 ## Índice
 
@@ -14,13 +16,20 @@ Guillermo Emmanuel González Méndez - alu0101466941
 - [Bibliografía](#bibliografía)
 
 ## Introducción
+En esta práctica se resolverán una serie de ejercicios relacionados con clases e interfaces genéricas y los principios SOLID. Todos los ejercicios deberán ser resueltos teniendo en cuenta estos principios. Además en esta práctica comenzaremos a utilizar informes de cubrimiento de código mediante Coveralls y Istanbul.
 
 ## Objetivos
+- Utilizar clases e interfaces genéricas.
+- Aplicar los principios SOLID en el desarrollo de software.
+- Utilizar herramientas de análisis de código y pruebas unitarias.
+- Utilizar informes de cubrimiento de código.
 
 ## Desarrollo de la práctica
+Para el desarrollo de la práctica lo primero que hemos configurado son los informes de cubrimiento de código mediante Coveralls e Istanbul. Hemos instalado las dependencias y creado el script `"coverage": "nyc npm test && nyc report --reporter=lcov"` en el `package.json` para generar el informe de cubrimiento de código. También hemos configurado las GitHub Actions para que hacer los tests en varias versiones de Node.js y subir automáticamente el informe de cubrimiento de código a Coveralls.
 
-Coveralls istanbul
-añadir los badges
+También hemos añadido los badges de Coveralls y GitHub Actions (tests) al inicio de este README.md. 
+
+En cuanto a la resolución de los ejercicios, se detallan individualmente a continuación.
 
 ### Ejercicio 1 - La mudanza
 
@@ -138,5 +147,7 @@ shortMessageNotifier.sendNotification("Hello World!");
 ## Modificación
 
 ## Conclusiones
+En esta práctica hemos aprendido a utilizar clases e interfaces genéricas y a aplicar los principios SOLID en el desarrollo de software. Hemos utilizado herramientas de análisis de código y pruebas unitarias, y hemos utilizado informes de cubrimiento de código. Hemos aprendido a configurar GitHub Actions para que haga los tests en varias versiones de Node.js y suba automáticamente el informe de cubrimiento de código a Coveralls.
 
 ## Bibliografía
+- [Error type uknkown](https://www.totaltypescript.com/concepts/object-is-of-type-unknown)
