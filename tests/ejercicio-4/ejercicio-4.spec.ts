@@ -1,5 +1,9 @@
 import { expect } from "chai";
-import { Printer, Scanner, PrinterScanner } from "../../src/ejercicio-4/ejercicio-4";
+import {
+  Printer,
+  Scanner,
+  PrinterScanner,
+} from "../../src/ejercicio-4/ejercicio-4";
 
 describe("Printer", () => {
   it("should print", () => {

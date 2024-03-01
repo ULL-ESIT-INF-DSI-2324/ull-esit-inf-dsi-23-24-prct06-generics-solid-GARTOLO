@@ -13,8 +13,10 @@ const collection = new ArithmeticableCollection<Complex>([
 // })
 
 describe("Modificacion 1", () => {
-  it ("New ArithmeticableCollection should return 0", () => {
-    expect(new ArithmeticableCollection().getNumberOfArithmeticables()).to.deep.equal(0);
+  it("New ArithmeticableCollection should return 0", () => {
+    expect(
+      new ArithmeticableCollection().getNumberOfArithmeticables(),
+    ).to.deep.equal(0);
   });
 
   it("Complex (1,2) + (4,3) should return (5,5)", () => {

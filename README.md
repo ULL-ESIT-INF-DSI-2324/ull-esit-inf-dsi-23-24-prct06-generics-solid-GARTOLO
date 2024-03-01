@@ -16,15 +16,18 @@ Guillermo Emmanuel González Méndez - alu0101466941
 - [Bibliografía](#bibliografía)
 
 ## Introducción
+
 En esta práctica se resolverán una serie de ejercicios relacionados con clases e interfaces genéricas y los principios SOLID. Todos los ejercicios deberán ser resueltos teniendo en cuenta estos principios. Además en esta práctica comenzaremos a utilizar informes de cubrimiento de código mediante Coveralls y Istanbul.
 
 ## Objetivos
+
 - Utilizar clases e interfaces genéricas.
 - Aplicar los principios SOLID en el desarrollo de software.
 - Utilizar herramientas de análisis de código y pruebas unitarias.
 - Utilizar informes de cubrimiento de código.
 
 ## Desarrollo de la práctica
+
 Para el desarrollo de la práctica lo primero que hemos configurado son los informes de cubrimiento de código mediante Coveralls e Istanbul. Hemos instalado las dependencias y creado el script `"coverage": "nyc npm test && nyc report --reporter=lcov"` en el `package.json` para generar el informe de cubrimiento de código. También hemos configurado las GitHub Actions para que hacer los tests en varias versiones de Node.js y subir automáticamente el informe de cubrimiento de código a Coveralls.
 
 También hemos añadido los badges de Coveralls y GitHub Actions (tests) al inicio de este README.md. En el caso del Coverage, no tenemos el 100% debido a los tests que no fueron terminados en la modificación, pero consultando en detalle se puede observar que mantenemos el 100% en el resto de ejercicios.
@@ -145,12 +148,15 @@ shortMessageNotifier.sendNotification("Hello World!");
 ```
 
 ## Modificación
+
 En cuanto al ejercicio correspondiente a la modificación, hemos implementado la interfaz genérica `Arithmeticable` para representar dichos métodos. Con la clase `ArithmeticableCollection` de tipo genérico T y que extiende a la interfaz `Arithmeticable`, representamos una colección de métodos a los que aplicar las operaciones. Entre estos métodos, hemos implementado las clases `Complex` y `Rational` para representar numeros complejos y racionales respectivamente. Hemos añadido las operaciones básicas y necesarias para el funcionamiento de las operaciones.
 
 Con los métodos de la clase `ArithmeticableCollection` podremos añadir un nuevo elemento a la colección, obtener un elemento por su índice y obtener el número total de elementos en la colección.
 
 ## Conclusiones
+
 En esta práctica hemos aprendido a utilizar clases e interfaces genéricas y a aplicar los principios SOLID en el desarrollo de software. Hemos utilizado herramientas de análisis de código y pruebas unitarias, y hemos utilizado informes de cubrimiento de código. Hemos aprendido a configurar GitHub Actions para que haga los tests en varias versiones de Node.js y suba automáticamente el informe de cubrimiento de código a Coveralls.
 
 ## Bibliografía
+
 - [Error type uknkown](https://www.totaltypescript.com/concepts/object-is-of-type-unknown)
